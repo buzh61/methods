@@ -49,9 +49,7 @@ test('Character get damage', () => {
   if (character.health > 0) {
     expect(character).toEqual(expectedData);
   }
-
 });
-
 
 test('Creating Bowman', () => {
   const character = new Bowman('Steve Bowie');
