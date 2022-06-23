@@ -1,9 +1,57 @@
+import Character from '../src/js/Character';
 import Bowman from '../src/js/Bowman';
 import Swordsman from '../src/js/Swordsman';
 import Magician from '../src/js/Magician';
 import Undead from '../src/js/Undead';
 import Zombie from '../src/js/Zombie';
 import Daemon from '../src/js/Daemon';
+
+test('Creating Character', () => {
+  const character = new Character('Steve Jobszz', 'Barbarian', 80, 0);
+  const expectedData = {
+    name: 'Steve Jobszz',
+    type: 'Barbarian',
+    health: 100,
+    level: 1,
+    attack: 80,
+    protection: 0,
+  };
+  expect(character).toEqual(expectedData);
+});
+
+test('Levelup Character', () => {
+  const character = new Character('Steve Jobszz', 'Barbarian', 80, 0);
+  character.health = 80;
+  const expectedData = {
+    name: 'Steve Jobszz',
+    type: 'Barbarian',
+    health: 100,
+    level: 2,
+    attack: 96,
+    protection: 0,
+  };
+
+  character.levelUp();
+  expect(character).toEqual(expectedData);
+});
+
+test('Character get damage', () => {
+  const character = new Character('Steve Jobszz', 'Barbarian', 80, 0);
+  character.damage(22);
+  const expectedData = {
+    name: 'Steve Jobszz',
+    type: 'Barbarian',
+    health: 78,
+    level: 1,
+    attack: 80,
+    protection: 0,
+  };
+  if (character.health > 0) {
+    expect(character).toEqual(expectedData);
+  }
+
+});
+
 
 test('Creating Bowman', () => {
   const character = new Bowman('Steve Bowie');
@@ -80,36 +128,5 @@ test('Creating Daemon', () => {
     attack: 10,
     protection: 40,
   };
-  expect(character).toEqual(expectedData);
-});
-
-test('Bowman levelup', () => {
-  const character = new Bowman('Steve Bowie');
-  character.health = 80;
-  const expectedData = {
-    name: 'Steve Bowie',
-    type: 'Bowman',
-    health: 100,
-    level: 2,
-    attack: 30,
-    protection: 30,
-  };
-
-  character.levelUp();
-  expect(character).toEqual(expectedData);
-});
-
-test('Bowman get Damage', () => {
-  const character = new Bowman('Steve Bowie');
-  character.damage(22);
-  const expectedData = {
-    name: 'Steve Bowie',
-    type: 'Bowman',
-    health: 83.5,
-    level: 1,
-    attack: 25,
-    protection: 25,
-  };
-
   expect(character).toEqual(expectedData);
 });
